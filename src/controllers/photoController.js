@@ -25,3 +25,14 @@ exports.getUserPhotos = async (req, res) => {
         res.status(500).json({ error: "Error al obtener las fotos" });
     }
 };
+
+// Eliminar una foto
+exports.deletePhoto = async (req, res) => {
+    try {
+    const { id } = req.params;
+    await Photo.findByIdAndDelete(id);
+    res.status(200).json({ message: "Foto eliminada con éxito" });
+    } catch (error) {
+    res.status(500).json({ error: "Error al eliminar la foto" });
+    }
+    };
