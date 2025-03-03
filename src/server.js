@@ -19,7 +19,6 @@ const photoRoutes = require("./routes/photoRoutes");
 app.use("/api/photos", photoRoutes);
 
 
-
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Servicitio corriendo en puerto ${PORT}`));
 
