@@ -10,7 +10,7 @@ const storage = multer.diskStorage({
     }
 });
 
-const upload = multer({Storage});
+const upload = multer({storage});
 
 // Definir rutas
 router.post("/upload", upload.single("photo"), uploadPhoto);
