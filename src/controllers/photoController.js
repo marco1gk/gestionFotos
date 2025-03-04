@@ -62,3 +62,11 @@ exports.deletePhoto = async (req, res) => {
         res.status(500).json({ error: "Error al eliminar la foto" });
     }
 };
+
+exports.getAllPhotos = async (req,res) => {
+    try{
+        Photo.find({}).then(function (photo) {
+            res.send(photo);
+        });
+    }
+}
