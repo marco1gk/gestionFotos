@@ -16,7 +16,7 @@ exports.uploadPhoto = async (req,res) => {
         
         res.status(201).json({
             message: "Foto subida con éxito",
-            photoId: newPhoto._id, // Aquí se devuelve el ID
+            photoId: newPhoto._id,
             photo: newPhoto
         });
 
@@ -39,13 +39,11 @@ exports.deletePhoto = async (req, res) => {
     try {
         const { id } = req.params;
 
-        // Buscar la foto en la BD para obtener la ruta del archivo
         const photo = await Photo.findById(id);
         if (!photo) {
             return res.status(404).json({ error: "Foto no encontrada" });
         }
 
-        // Eliminar la imagen del sistema de archivos
         const imagePath = path.resolve(photo.imageUrl);
         fs.unlink(imagePath, (err) => {
             if (err) {
@@ -53,7 +51,6 @@ exports.deletePhoto = async (req, res) => {
             }
         });
 
-        // Eliminar la foto de la base de datos
         await Photo.findByIdAndDelete(id);
 
         res.status(200).json({ message: "Foto eliminada con éxito" });
@@ -62,11 +59,3 @@ exports.deletePhoto = async (req, res) => {
         res.status(500).json({ error: "Error al eliminar la foto" });
     }
 };
-
-exports.getAllPhotos = async (req,res) => {
-    try{
-        Photo.find({}).then(function (photo) {
-            res.send(photo);
-        });
-    }
-}
