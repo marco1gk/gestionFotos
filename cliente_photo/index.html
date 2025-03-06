@@ -1,15 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
+<link rel="stylesheet" href="styles.css">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gestión de Fotos</title>
+
 </head>
+
 <body>
+    <div>
     <h1>Gestión de Fotos</h1>
+
     <form id="uploadForm">
         <input type="text" id="userId" placeholder="ID del Usuario" required>
-        <input type="file" id="photo" required>
+
+        <label class="custom-file-upload">
+            <input type="file" id="photo"/>
+            Custom Upload
+        </label>
+        
         <button type="submit">Subir Foto</button>
     </form>
 
@@ -17,6 +27,6 @@
     <div id="gallery"></div>
 
     <script src="script.js"></script>
-
+    </div>
 </body>
 </html>
