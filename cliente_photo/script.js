@@ -47,12 +47,13 @@ const loadPhotos = async(userId)=>{
             photoCard.classList.add('photo-card');
             console.log("URL de la imagen:", photo.imageUrl);
 
-            photoCard.innerHTML=`<img src="http://localhost:1234/${photo.imageUrl}" alt="Foto subida">`
+           photoCard.innerHTML=`<img src="http://localhost:1234/${photo.imageUrl}" alt="Foto subida">
+           <button onclick="deletePhoto('${photo._id}', '${userId}')">Eliminar</button>`
 
+            
             gallery.appendChild(photoCard);
         })
     }catch(error){
-        alert("vales verga")
         console.log("eror al cargar fotos")
     }
 }
