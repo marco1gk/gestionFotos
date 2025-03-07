@@ -1,7 +1,7 @@
 const request = require("supertest");
 const mongoose = require("mongoose");
 const path = require("path");
-const app = require('../src/server'); 
+const app = require('../server'); 
 
 
 let uploadedPhotoId = '';
