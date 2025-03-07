@@ -57,3 +57,25 @@ const loadPhotos = async(userId)=>{
         console.log("eror al cargar fotos")
     }
 }
+
+
+
+const deletePhoto = async (photoId, userId) => {
+    try {
+        const response = await fetch(`${API_URL}/${photoId}`, {
+            method: "DELETE",
+        });
+
+        const result = await response.json();
+        console.log(result);
+
+        if (response.ok) {
+            alert("Foto eliminada con éxito");
+            loadPhotos(userId); // Vuelve a cargar la galería después de eliminar
+        } else {
+            alert("Error al eliminar la foto");
+        }
+    } catch (error) {
+        console.error("Error al eliminar la foto:", error);
+    }
+};
