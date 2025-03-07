@@ -35,7 +35,7 @@ input[type=submit] {
     border-radius: 50px; 
 }
 
-h1{
+h1,h2{
     background-color: #ff0000;
 }
 
@@ -44,10 +44,20 @@ button{
     background-color: #ffffff;
 }
 
+
 input[type=file] {
     display: none;
   }
-  
+
+  input[type=submit]
+  {
+      display:hidden;
+  }
+
+  .form-submit-button {
+    display: none;
+    }
+
 .custom-file-upload {
     background-color: #ffffff;
     border: 1px solid #ccc;
@@ -64,6 +74,5 @@ input[type=file] {
 
 button:hover{
     background-color: #ff0000;
-
 }
 
