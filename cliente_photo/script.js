@@ -1,14 +1,19 @@
 const API_URL= "http://localhost:1234/api/photos"
 
-document.getElementById("Uploadform").addEventListener("submit",async (e)=>{
+document.getElementById("uploadForm").addEventListener("submit",async (e)=>{
     e.preventDefault();
-    const userId=document.getElementById("userId").ariaValueMax
+    let userId = document.getElementById("userId").value;
+    console.log(userId);
+    let photo= document.getElementById("photo").files[0];
 
-    const photo= document.getElementById("photo").files[0];
-
+    console.log(photo);
     if(!userId || !photo){
-        alert("por favor ingresse in ide de usuairo y gfoto");
-        return;
+        if(!userId){
+            console.log("falló el user id");
+        }
+        if(!photo){
+            console.log("falló foto");
+        }
     }
 
     const formDta= new FormData();
@@ -16,13 +21,13 @@ document.getElementById("Uploadform").addEventListener("submit",async (e)=>{
     formDta.append("photo",photo);
 
     try {
-        const response = await fetch('{$API_URL}/upload',{
+        const response = await fetch(`${API_URL}/upload`,{
            method: "POST",
            body: formDta
         });
         const data = await response.json();
         alert(data.message);
-        //loadPhotos(userId);//recargar galeria
+        loadPhotos(userId);//recargar galeria
     }catch(error){
         console.log("error al subir imagen")
     }
@@ -30,19 +35,24 @@ document.getElementById("Uploadform").addEventListener("submit",async (e)=>{
 
 const loadPhotos = async(userId)=>{
     try{
-        const response = await fetch(`{$API_URL}/${userId}`);
+        const response = await fetch(`${API_URL}/${userId}`);
         const photos =await response.json();
         const gallery= document.getElementById("gallery");
-        gallery.innerHTML="";
+        console.log(photos.length);
+        gallery.innerHTML='';
         photos.forEach(photo => {
+            console.log(photo.imageUrl);
+            
             const photoCard = document.createElement("div");
-            photoCard.classList.add("photo-card");
+            photoCard.classList.add('photo-card');
+            console.log("URL de la imagen:", photo.imageUrl);
 
-            photoCard.innerHTML='<img src="http://localhost:3000/${photo.imageUrl}" alt="Foto subida">'
+            photoCard.innerHTML=`<img src="http://localhost:1234/${photo.imageUrl}" alt="Foto subida">`
 
-            gellery.appendChild(photoCard);
+            gallery.appendChild(photoCard);
         })
     }catch(error){
+        alert("vales verga")
         console.log("eror al cargar fotos")
     }
 }
