@@ -1,7 +1,7 @@
 const request = require("supertest");
 const mongoose = require("mongoose");
 const path = require("path");
-const app = require('../src/server'); 
+const app = require('../server'); 
 
 
 let uploadedPhotoId = '';
@@ -21,7 +21,7 @@ describe('API Tests - Gestión de Fotos', () => {
     const res = await request(app)
         .post("/api/photos/upload")
         .field("userId", userId) 
-        .attach("photo", path.join(__dirname, "test.jpg")); 
+        .attach("photo", path.join(__dirname, "test.jpeg")); 
 
     console.log("Respuesta POST /api/photos/upload:", res.body);
 
